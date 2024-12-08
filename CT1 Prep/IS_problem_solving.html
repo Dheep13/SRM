@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Summary of Formulas, Tips, and Tricks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1, h2, h3 {
+            color: #2e6da4;
+        }
+        p {
+            font-size: 14px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Summary of Formulas, Tips, and Tricks</h1>
+
+<h2>1. Binomial Distribution</h2>
+<h3>Key Formula:</h3>
+<p>The <strong>binomial probability formula</strong> is:</p>
+<pre>
+P(X = k) = (n choose k) p^k (1 - p)^(n - k)
+</pre>
+<p>Where:</p>
+<ul>
+    <li><strong>P(X = k)</strong> = probability of exactly k successes.</li>
+    <li><strong>n</strong> = total number of trials.</li>
+    <li><strong>k</strong> = number of successes you're interested in.</li>
+    <li><strong>p</strong> = probability of success on each trial.</li>
+    <li><strong>(1 - p)</strong> = probability of failure.</li>
+</ul>
+
+<h3>Mean and Variance of a Binomial Distribution:</h3>
+<ul>
+    <li><strong>Mean:</strong> μ = n * p</li>
+    <li><strong>Variance:</strong> σ² = n * p * (1 - p)</li>
+</ul>
+
+<h3>Tips to Solve Binomial Problems:</h3>
+<ul>
+    <li>Use the <code>binom.pmf()</code> function in Python for exact probabilities.</li>
+    <li>For ranges (e.g., "more than" or "fewer than"), use cumulative distribution functions (CDF) via <code>binom.cdf()</code>.</li>
+</ul>
+
+<h2>2. Normal Distribution</h2>
+<h3>Key Formula: Z-Score</h3>
+<p>The <strong>Z-score</strong> formula is:</p>
+<pre>
+Z = (X - μ) / σ
+</pre>
+<p>Where:</p>
+<ul>
+    <li><strong>Z</strong> = Z-score.</li>
+    <li><strong>X</strong> = the value from the data you're working with.</li>
+    <li><strong>μ</strong> = the mean of the data.</li>
+    <li><strong>σ</strong> = the standard deviation.</li>
+</ul>
+
+<h3>Using the Z-Score to Find Probabilities:</h3>
+<ul>
+    <li>Use <strong>Z-tables</strong> or Python's <code>stats.norm.cdf()</code> to find the cumulative probability.</li>
+    <li>For probabilities <strong>above</strong> a value, subtract the cumulative probability from 1:</li>
+    <pre>P(X > Z) = 1 - P(Z ≤ z)</pre>
+    <li>For probabilities <strong>between two points</strong>, subtract cumulative probabilities:</li>
+    <pre>P(a < X < b) = P(Z ≤ Z_b) - P(Z ≤ Z_a)</pre>
+</ul>
+
+<h2>3. Cumulative Distribution Function (CDF)</h2>
+<p>The <strong>CDF</strong> gives the probability that a value drawn from a distribution will be less than or equal to a certain value:</p>
+<pre>
+P(X ≤ x) = F(x)
+</pre>
+
+<h2>4. Probability Mass Function (PMF) vs. Probability Density Function (PDF) vs. Cumulative Distribution Function (CDF)</h2>
+<ul>
+    <li><strong>PMF</strong>: Used for discrete random variables, it gives the probability that a discrete variable is exactly equal to a certain value.</li>
+    <li><strong>PDF</strong>: Used for continuous random variables, it gives the relative likelihood that the variable is near a specific value.</li>
+    <li><strong>CDF</strong>: The probability that the variable will take a value less than or equal to a given number (used for both discrete and continuous variables).</li>
+</ul>
+
+<h2>5. Common Z-Score Values for Confidence Intervals</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Confidence Level</th>
+            <th>Z-Score (Two-Tailed)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>90%</td>
+            <td>1.645</td>
+        </tr>
+        <tr>
+            <td>95%</td>
+            <td>1.96</td>
+        </tr>
+        <tr>
+            <td>99%</td>
+            <td>2.575</td>
+        </tr>
+    </tbody>
+</table>
+
+<h2>6. Bayes Theorem</h2>
+<h3>Key Formula:</h3>
+<pre>
+P(A|B) = [P(B|A) * P(A)] / P(B)
+</pre>
+<p>Where:</p>
+<ul>
+    <li><strong>P(A|B)</strong> = probability of event A occurring, given that B is true (posterior probability).</li>
+    <li><strong>P(B|A)</strong> = probability of event B occurring, given that A is true (likelihood).</li>
+    <li><strong>P(A)</strong> = probability of event A occurring (prior probability).</li>
+    <li><strong>P(B)</strong> = probability of event B occurring (evidence).</li>
+</ul>
+
+<h3>Tips for Solving Bayes Theorem Problems:</h3>
+<ul>
+    <li>Identify the prior, likelihood, and evidence clearly from the problem statement.</li>
+    <li>Use the formula to calculate the posterior probability by plugging in the known values.</li>
+    <li>Make sure to understand whether you're calculating the probability of A given B or the reverse.</li>
+</ul>
+
+<h2>7. Kurtosis</h2>
+<p><strong>Kurtosis</strong> measures the "tailedness" of a distribution:</p>
+<ul>
+    <li><strong>High kurtosis</strong> = more data in the tails (leptokurtic).</li>
+    <li><strong>Low kurtosis</strong> = less data in the tails (platykurtic).</li>
+    <li><strong>Normal distribution kurtosis</strong> = 3 (mesokurtic).</li>
+</ul>
+
+<h2>8. Skewness</h2>
+<p><strong>Skewness</strong> measures the asymmetry of the data:</p>
+<ul>
+    <li><strong>Positive skewness</strong> = tail is on the right (right skewed).</li>
+    <li><strong>Negative skewness</strong> = tail is on the left (left skewed).</li>
+    <li><strong>Zero skewness</strong> = perfectly symmetrical data (normal distribution).</li>
+</ul>
+
+<h2>9. Odds in Favor and Odds Against</h2>
+<ul>
+    <li><strong>Odds in favor</strong> of event A: the ratio of the probability of A happening to the probability of A not happening.</li>
+    <pre>Odds in favor = P(A) / (1 - P(A))</pre>
+    <li><strong>Odds against</strong> event A: the ratio of the probability of A not happening to the probability of A happening.</li>
+    <pre>Odds against = (1 - P(A)) / P(A)</pre>
+</ul>
+
+<h2>10. Combinations</h2>
+<h3>Key Formula:</h3>
+<pre>
+C(n, k) = n! / [k! * (n - k)!]
+</pre>
+<p>Where:</p>
+<ul>
+    <li><strong>C(n, k)</strong> = the number of ways to choose k objects from a set of n.</li>
+    <li><strong>n!</strong> = the factorial of n.</li>
+</ul>
+<p><strong>Combinations</strong> differ from permutations because the order does not matter in combinations.</p>
+
+<h2>11. Differences Between Poisson and Binomial Distributions</h2>
+<h3>Key Differences:</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Feature</th>
+            <th>Binomial Distribution</th>
+            <th>Poisson Distribution</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Number of Trials</td>
+            <td>Fixed number of trials (n)</td>
+            <td>No fixed number of trials, measures events over time/space</td>
+        </tr>
+        <tr>
+            <td>Probability of Success</td>
+            <td>Constant probability (p) for each trial</td>
+            <td>Constant rate of occurrence (λ) in a fixed interval</td>
+        </tr>
+        <tr>
+            <td>Parameters</td>
+            <td>n (number of trials), p (probability of success)</td>
+            <td>λ (average rate)</td>
+        </tr>
+        <tr>
+            <td>Formula</td>
+            <td>P(X = k) = (n choose k) p^k (1 - p)^(n - k)</td>
+            <td>P(X = k) = (λ^k * e^(-λ)) / k!</td>
+        </tr>
+        <tr>
+            <td>Use Case</td>
+            <td>Discrete number of successes in independent trials</td>
+            <td>Number of events happening in a fixed time/space interval</td>
+        </tr>
+        <tr>
+            <td>Mean</td>
+            <td>μ = n * p</td>
+            <td>μ = λ</td>
+        </tr>
+        <tr>
+            <td>Variance</td>
+            <td>σ² = n * p * (1 - p)</td>
+            <td>σ² = λ</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>Tips for Choosing Between Binomial and Poisson:</h3>
+<ul>
+    <li><strong>Use Binomial</strong> when you have a <strong>fixed number of trials</strong> with success/failure outcomes.</li>
+    <li><strong>Use Poisson</strong> when you're modeling the number of times an event occurs within a given <strong>time or space</strong> (especially for rare events).</li>
+</ul>
+
+<h2>12. Survival Function (SF)</h2>
+<p>The <strong>Survival Function (SF)</strong> is the complement of the Cumulative Distribution Function (CDF) and gives the probability that a random variable is <strong>greater than</strong> a certain value:</p>
+<pre>
+S(x) = P(X > x) = 1 - F(x)
+</pre>
+<p>Where <strong>F(x)</strong> is the cumulative probability. This function is useful for calculating probabilities in the tail (i.e., the right tail of the distribution).</p>
+
+<h2>General Tips and Tricks</h2>
+<ul>
+    <li>Use Python's <code>scipy.stats</code> library for efficient calculations of probabilities, Z-scores, and distribution functions.</li>
+    <li>When solving normal distribution problems, always convert raw values to Z-scores to simplify the calculations.</li>
+    <li>If solving for "greater than" probabilities, remember to subtract the cumulative probability from 1 (this is also the survival function).</li>
+    <li>Use <strong>Binomial Distribution</strong> for discrete trials (e.g., number of successes in a series of trials) and <strong>Normal Distribution</strong> for continuous data (e.g., heights, weights, times).</li>
+    <li><strong>Odds</strong> are useful for interpreting probabilities, especially in scenarios involving betting or risk. Use <strong>Odds in Favor</strong> to understand the likelihood of success compared to failure, and <strong>Odds Against</strong> to interpret the likelihood of failure.</li>
+    <li><strong>Combinations</strong> and <strong>Permutations</strong>: Always distinguish between whether order matters (permutations) or doesn't matter (combinations).</li>
+</ul>
+
+</body>
+</html>

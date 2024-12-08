@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Naïve Bayes Summary and Sample Problems</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            font-size: 16px;
+            text-align: left;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        h2 {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Naïve Bayes Summary</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Concept</th>
+                <th>Explanation</th>
+                <th>Key Formula/Example</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Naïve Bayes Classifiers</td>
+                <td>Probabilistic classifiers based on Bayes' theorem and the assumption of feature independence.</td>
+                <td>
+                    <code>P(C | x) = (P(C) * P(x | C)) / P(x)</code>
+                </td>
+            </tr>
+            <tr>
+                <td>Types of Naïve Bayes</td>
+                <td>
+                    <ul>
+                        <li><strong>Gaussian:</strong> For continuous data (normal distribution).</li>
+                        <li><strong>Multinomial:</strong> For counts.</li>
+                        <li><strong>Bernoulli:</strong> For binary data.</li>
+                    </ul>
+                </td>
+                <td>
+                    Gaussian: <code>P(x_i | C) = (1 / √(2πσ²)) * exp(-(x_i - μ)² / 2σ²)</code>
+                </td>
+            </tr>
+            <tr>
+                <td>Bernoulli Naïve Bayes</td>
+                <td>Works with binary features (0 or 1), assuming a Bernoulli distribution for feature presence.</td>
+                <td>
+                    <code>P(x | C) = ∏ P(x_i | C)^x_i * (1 - P(x_i | C))^(1 - x_i)</code>
+                </td>
+            </tr>
+            <tr>
+                <td>Multinomial Naïve Bayes</td>
+                <td>Suitable for text data where features represent counts of words or terms.</td>
+                <td>
+                    <code>P(x | C) = ∏ P(x_i | C)^x_i</code>
+                </td>
+            </tr>
+            <tr>
+                <td>Laplace Smoothing</td>
+                <td>Avoids zero probabilities by adding a smoothing parameter α.</td>
+                <td>
+                    <code>P(x_i | C) = (Count(x_i) + α) / (Total instances in class C + kα)</code>
+                </td>
+            </tr>
+            <tr>
+                <td>∏ (Product Symbol)</td>
+                <td>
+                    Represents the product of a sequence of terms. For example, 
+                    <code>∏_{i=1}^n a_i = a_1 * a_2 * ... * a_n</code>.
+                </td>
+                <td>
+                    Example: If <code>a_1 = 2</code>, <code>a_2 = 3</code>, and <code>a_3 = 4</code>, then 
+                    <code>∏_{i=1}^3 a_i = 2 * 3 * 4 = 24</code>.
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Sample Problems</h2>
+    <h3>1. Bernoulli Naïve Bayes</h3>
+    <ol>
+        <li>
+            Classify an email as spam or non-spam using the presence of words like "Win", "Free", and "Click".<br>
+            Training data: Emails with binary features indicating whether these words are present.<br>
+            Calculate the probabilities and determine if the new email <code>"Win a free prize!"</code> is spam.
+        </li>
+        <li>
+            Classify a review as positive or negative based on the presence of words like "Good", "Bad", and "Excellent".<br>
+            Training data: Reviews labeled with binary features for these words.<br>
+            Predict whether the review <code>"Good product!"</code> is positive.
+        </li>
+    </ol>
+
+    <h3>2. Multinomial Naïve Bayes</h3>
+    <ol>
+        <li>
+            Classify a document as "Sports" or "Politics" using word frequencies.<br>
+            Training data: Word counts like "game", "team" for sports; "election", "government" for politics.<br>
+            Predict the category of a new document with word counts: <code>{game: 3, election: 1}</code>.
+        </li>
+        <li>
+            Classify a news article as "Technology" or "Finance" based on the frequency of words like "AI", "Stocks", etc.<br>
+            Predict the category of an article with word counts: <code>{AI: 5, Stocks: 2}</code>.
+        </li>
+    </ol>
+
+    <h3>3. Gaussian Naïve Bayes</h3>
+    <ol>
+        <li>
+            Classify a flower as "Setosa" or "Virginica" based on petal length and width.<br>
+            Training data: Continuous measurements with class labels.<br>
+            Predict the flower's species for <code>petal length = 5.5, petal width = 1.5</code>.
+        </li>
+        <li>
+            Classify a patient as "Healthy" or "Diabetic" based on blood sugar and insulin levels.<br>
+            Training data: Continuous data with class labels.<br>
+            Predict the class for <code>blood sugar = 110, insulin = 80</code>.
+        </li>
+    </ol>
+</body>
+</html>

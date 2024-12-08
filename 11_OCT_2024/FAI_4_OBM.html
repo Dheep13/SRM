@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Complexity Notation Explanation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        .definition {
+            background-color: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .example {
+            background-color: #f1f8e9;
+            border-left: 4px solid #689f38;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .formula {
+            background-color: #fff3e0;
+            border-left: 4px solid #e65100;
+            padding: 15px;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Understanding O(b^m) Notation</h1>
+
+    <div class="definition">
+        <h2>Notation Components:</h2>
+        <ul>
+            <li><strong>O</strong> (Big O): Represents the upper bound of growth rate
+                <ul>
+                    <li>Describes worst-case scenario</li>
+                    <li>Used to express maximum time/space needed</li>
+                </ul>
+            </li>
+            <li><strong>b</strong> (Branching Factor):
+                <ul>
+                    <li>Number of successors (children) for each node</li>
+                    <li>Number of possible moves/actions at each state</li>
+                </ul>
+            </li>
+            <li><strong>m</strong> (Maximum Depth):
+                <ul>
+                    <li>Length of the longest path in the search tree</li>
+                    <li>Maximum number of moves from start to goal</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="example">
+        <h2>Example: 8-Puzzle</h2>
+        <ul>
+            <li><strong>b (Branching Factor)</strong>:
+                <ul>
+                    <li>Each state has 2-4 possible moves (up, down, left, right)</li>
+                    <li>Average b ≈ 3</li>
+                </ul>
+            </li>
+            <li><strong>m (Maximum Depth)</strong>:
+                <ul>
+                    <li>Worst case path length to solution</li>
+                    <li>For 8-puzzle, m = 31 moves maximum</li>
+                </ul>
+            </li>
+        </ul>
+
+        <div class="mermaid">
+        graph TD
+            A[State] --> B1[Move1]
+            A --> B2[Move2]
+            A --> B3[Move3]
+            B1 --> C1[...]
+            B1 --> C2[...]
+            B2 --> C3[...]
+            B2 --> C4[...]
+            B3 --> C5[...]
+            B3 --> C6[...]
+
+            style A fill:#98fb98
+        </div>
+    </div>
+
+    <div class="formula">
+        <h2>Complexity Calculation</h2>
+        <p>For O(b^m):</p>
+        <ul>
+            <li>Level 1: b nodes</li>
+            <li>Level 2: b² nodes</li>
+            <li>Level 3: b³ nodes</li>
+            <li>...</li>
+            <li>Level m: b^m nodes</li>
+        </ul>
+
+        <h3>Example Values:</h3>
+        <pre>
+If b = 3 and m = 4:
+Level 1: 3¹ = 3 nodes
+Level 2: 3² = 9 nodes
+Level 3: 3³ = 27 nodes
+Level 4: 3⁴ = 81 nodes
+Total nodes = 120 nodes
+        </pre>
+    </div>
+
+    <div class="example">
+        <h2>Real-World Examples</h2>
+
+        <h3>1. Chess Game:</h3>
+        <ul>
+            <li>b ≈ 35 (average legal moves)</li>
+            <li>m ≈ 100 (typical game length)</li>
+            <li>Complexity: O(35¹⁰⁰)</li>
+        </ul>
+
+        <h3>2. Rubik's Cube:</h3>
+        <ul>
+            <li>b = 18 (possible moves)</li>
+            <li>m = 20 (God's number)</li>
+            <li>Complexity: O(18²⁰)</li>
+        </ul>
+
+        <h3>3. Route Finding:</h3>
+        <ul>
+            <li>b = number of connected roads</li>
+            <li>m = maximum route length</li>
+            <li>Complexity varies with map size</li>
+        </ul>
+    </div>
+
+    <div class="definition">
+        <h2>Important Points for Exams:</h2>
+        <ul>
+            <li>Can you identify b and m for a given problem?</li>
+            <li>Can you calculate total nodes at each level?</li>
+            <li>Can you compare different algorithms' complexities?</li>
+            <li>Common complexities in search algorithms:
+                <ul>
+                    <li>BFS: O(b^d) where d is solution depth</li>
+                    <li>DFS: O(b^m) where m is maximum depth</li>
+                    <li>A*: O(b^d) but usually much better in practice</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="example">
+        <h2>Practice Questions:</h2>
+        <ol>
+            <li>For a puzzle with 4 possible moves at each state and maximum solution depth of 10, what is the worst-case complexity?</li>
+            <li>If each node in a search tree has 3 children and the solution is at depth 5, how many nodes might need to be examined in the worst case?</li>
+            <li>Compare the complexities of searching a tree with b=2, m=10 versus b=3, m=5.</li>
+        </ol>
+
+        <h3>Answers:</h3>
+        <ol>
+            <li>O(4¹⁰) ≈ 1,048,576 nodes</li>
+            <li>O(3⁵) = 243 nodes</li>
+            <li>2¹⁰ = 1,024 vs 3⁵ = 243 (second is smaller)</li>
+        </ol>
+    </div>
+
+</body>
+</html>

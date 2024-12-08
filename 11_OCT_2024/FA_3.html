@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Advanced Search Strategies Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        .definition {
+            background-color: #e3f2fd;
+            border-left: 4px solid #1976d2;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .example {
+            background-color: #f1f8e9;
+            border-left: 4px solid #689f38;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .formula {
+            background-color: #f3e5f5;
+            border-left: 4px solid #7b1fa2;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        .important {
+            background-color: #ffebee;
+            border-left: 4px solid #c62828;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Advanced Search Strategies Guide</h1>
+
+    <h2>Part 1: Heuristic Search Strategies</h2>
+
+    <div class="definition">
+        <h3>What is a Heuristic?</h3>
+        <p>A heuristic is an estimated cost function h(n) that:</p>
+        <ul>
+            <li>Estimates the cost from current state to goal state</li>
+            <li>Guides search toward promising paths</li>
+            <li>Trades optimality for efficiency</li>
+        </ul>
+    </div>
+
+    <h3>1. Greedy Best-First Search</h3>
+    <div class="definition">
+        <p>A search strategy that expands the node that appears closest to the goal according to the heuristic function h(n).</p>
+        
+        <div class="mermaid">
+        graph TD
+            A[A: h=6] --> B[B: h=4]
+            A --> C[C: h=5]
+            B --> D[D: h=2]
+            B --> E[E: h=3]
+            C --> F[F: h=4]
+            
+            style A fill:#98fb98
+            style D fill:#ff9999
+            linkStyle 0 stroke:#green,stroke-width:2px
+            linkStyle 2 stroke:#green,stroke-width:2px
+        </div>
+    </div>
+
+    <div class="important">
+        <h4>Characteristics:</h4>
+        <ul>
+            <li>Complete: No</li>
+            <li>Optimal: No</li>
+            <li>Time Complexity: O(b^m) worst case</li>
+            <li>Space Complexity: O(b^m)</li>
+        </ul>
+    </div>
+
+    <h3>2. A* Search</h3>
+    <div class="definition">
+        <p>Combines the benefits of uniform-cost search and greedy best-first search using f(n) = g(n) + h(n)</p>
+        <ul>
+            <li>g(n): Actual cost from start to current node</li>
+            <li>h(n): Estimated cost from current node to goal</li>
+        </ul>
+    </div>
+
+    <div class="formula">
+        <p>f(n) = g(n) + h(n)</p>
+        <p>where:</p>
+        <ul>
+            <li>f(n) = total estimated cost</li>
+            <li>g(n) = cost so far to reach n</li>
+            <li>h(n) = estimated cost from n to goal</li>
+        </ul>
+    </div>
+
+    <div class="example">
+        <h4>Example: 8-Puzzle with Manhattan Distance Heuristic</h4>
+        <div class="mermaid">
+        graph TD
+            A["f=4
+            1 2 3
+            _ 4 6
+            7 5 8"] --> B["f=6
+            1 2 3
+            4 _ 6
+            7 5 8"]
+            A --> C["f=5
+            1 2 3
+            7 4 6
+            _ 5 8"]
+            
+            style A fill:#98fb98
+            style B fill:#ff9999
+        </div>
+        <p>Manhattan Distance = |x1-x2| + |y1-y2|</p>
+    </div>
+
+    <h3>3. AO* Search</h3>
+    <div class="definition">
+        <p>AND-OR search algorithm for problems that can be decomposed into subproblems.</p>
+        <ul>
+            <li>AND nodes: All subgoals must be achieved</li>
+            <li>OR nodes: Any subgoal can be chosen</li>
+        </ul>
+    </div>
+
+    <div class="example">
+        <h4>Example: Travel Planning</h4>
+        <div class="mermaid">
+        graph TD
+            A[Plan Trip] --> B[Transport]
+            A --> C[Accommodation]
+            B --> D[Flight]
+            B --> E[Train]
+            
+            style A fill:#98fb98
+            style B fill:#ffff00
+            style C fill:#ffff00
+        </div>
+        <p>AND node: Need both transport AND accommodation</p>
+        <p>OR node: Can choose flight OR train</p>
+    </div>
+
+    <h2>Part 2: Local Search Algorithms</h2>
+
+    <div class="definition">
+        <h3>What is Local Search?</h3>
+        <p>Search algorithms that:</p>
+        <ul>
+            <li>Maintain current state only</li>
+            <li>Move to neighboring states</li>
+            <li>Don't maintain search path</li>
+            <li>Used for optimization problems</li>
+        </ul>
+    </div>
+
+    <h3>1. Hill Climbing Search</h3>
+    <div class="definition">
+        <p>Always moves in direction of increasing value (like climbing a hill).</p>
+        
+        <div class="mermaid">
+        graph TD
+            A[Value: 5] --> B[Value: 7]
+            B --> C[Value: 8]
+            C --> D[Value: 8]
+            
+            style A fill:#98fb98
+            style C fill:#ff9999
+        </div>
+    </div>
+
+    <div class="important">
+        <h4>Problems:</h4>
+        <ul>
+            <li>Local maxima: Gets stuck at peaks that aren't globally optimal</li>
+            <li>Plateaus: Flat areas with no uphill moves</li>
+            <li>Ridges: Series of local maxima</li>
+        </ul>
+    </div>
+
+    <h3>2. Simulated Annealing</h3>
+    <div class="definition">
+        <p>Probabilistically accepts worse moves to escape local maxima.</p>
+        <div class="formula">
+            <p>P(accept) = e^((value_new - value_current)/temperature)</p>
+        </div>
+    </div>
+
+    <div class="example">
+        <h4>Temperature Schedule:</h4>
+        <pre>
+Initial T = high (accepts most moves)
+Final T = low (accepts only better moves)
+T = T * cooling_rate (typically 0.95)
+        </pre>
+    </div>
+
+    <h3>3. Local Beam Search</h3>
+    <div class="definition">
+        <p>Keeps track of k states rather than just one.</p>
+        <ul>
+            <li>Generates all successors of k states</li>
+            <li>Selects k best from combined successors</li>
+            <li>Continues with these k states</li>
+        </ul>
+    </div>
+
+    <div class="example">
+        <h4>Example (k=3):</h4>
+        <div class="mermaid">
+        graph TD
+            A1[State1] --> B1[B1]
+            A1 --> B2[B2]
+            A2[State2] --> B3[B3]
+            A2 --> B4[B4]
+            A3[State3] --> B5[B5]
+            A3 --> B6[B6]
+            
+            style B2,B4,B5 fill:#98fb98
+        </div>
+        <p>Keep best 3 states from all generated successors</p>
+    </div>
+
+    <div class="important">
+        <h3>Comparison of Local Search Strategies</h3>
+        <table>
+            <tr>
+                <th>Strategy</th>
+                <th>Complete</th>
+                <th>Memory</th>
+                <th>Best For</th>
+                <th>Limitations</th>
+            </tr>
+            <tr>
+                <td>Hill Climbing</td>
+                <td>No</td>
+                <td>O(1)</td>
+                <td>Simple optimization</td>
+                <td>Local maxima</td>
+            </tr>
+            <tr>
+                <td>Simulated Annealing</td>
+                <td>No</td>
+                <td>O(1)</td>
+                <td>Complex landscapes</td>
+                <td>Slow convergence</td>
+            </tr>
+            <tr>
+                <td>Local Beam</td>
+                <td>No</td>
+                <td>O(k)</td>
+                <td>Parallel exploration</td>
+                <td>Parameter tuning</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="important">
+        <h3>Exam Tips:</h3>
+        <ul>
+            <li>Know how to:
+                <ul>
+                    <li>Calculate f(n) for A*</li>
+                    <li>Prove heuristic admissibility</li>
+                    <li>Identify local maxima/minima</li>
+                    <li>Compare strategy effectiveness</li>
+                </ul>
+            </li>
+            <li>Common Applications:
+                <ul>
+                    <li>A*: Path finding, puzzle solving</li>
+                    <li>Hill Climbing: Function optimization</li>
+                    <li>Simulated Annealing: VLSI design, scheduling</li>
+                    <li>Local Beam: Pattern recognition</li>
+                </ul>
+            </li>
+            <li>Practice Problems:
+                <ul>
+                    <li>8-puzzle with different heuristics</li>
+                    <li>TSP with local search</li>
+                    <li>Graph coloring with hill climbing</li>
+                    <li>Job scheduling with simulated annealing</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+</body>
+</html>

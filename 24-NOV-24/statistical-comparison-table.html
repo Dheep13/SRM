@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .comparison-table thead tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 12px 15px;
+            border: 1px solid #dddddd;
+        }
+
+        .comparison-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .comparison-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .aspect-column {
+            font-weight: bold;
+            background-color: #f8f9fa;
+        }
+
+        .note {
+            font-style: italic;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-left: 3px solid #009879;
+        }
+
+        .formula {
+            font-family: "Courier New", monospace;
+            background-color: #f8f8f8;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Aspect</th>
+                <th>Z-Score</th>
+                <th>T-Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="aspect-column">When to Use</td>
+                <td>
+                    • Large sample (n ≥ 30)<br>
+                    • Population standard deviation (σ) known<br>
+                    • Population normally distributed
+                </td>
+                <td>
+                    • Small sample (n < 30)<br>
+                    • Population standard deviation (σ) unknown<br>
+                    • Sample standard deviation (s) used<br>
+                    • Population normally distributed
+                </td>
+            </tr>
+            <tr>
+                <td class="aspect-column">Independent Variable (X)</td>
+                <td>
+                    • The manipulated/predictor variable<br>
+                    • What you control/change<br>
+                    • Examples:<br>
+                    - Treatment vs Control<br>
+                    - Before vs After<br>
+                    - Different methods/techniques
+                </td>
+                <td>
+                    • Same as Z-score<br>
+                    • Categorical (groups)<br>
+                    • Usually nominal or ordinal<br>
+                    • Examples:<br>
+                    - Treatment groups<br>
+                    - Time points<br>
+                    - Methods compared
+                </td>
+            </tr>
+            <tr>
+                <td class="aspect-column">Dependent Variable (Y)</td>
+                <td>
+                    • The outcome/response variable<br>
+                    • What you measure<br>
+                    • Must be continuous/numerical<br>
+                    • Examples:<br>
+                    - Test scores<br>
+                    - Measurements<br>
+                    - Counts
+                </td>
+                <td>
+                    • Same as Z-score<br>
+                    • Must be continuous/numerical<br>
+                    • What you're testing for differences<br>
+                    • Examples:<br>
+                    - Performance measures<br>
+                    - Physical measurements<br>
+                    - Rates or scores
+                </td>
+            </tr>
+            <tr>
+                <td class="aspect-column">Basic Formula</td>
+                <td class="formula">z = (x - μ)/σ</td>
+                <td class="formula">t = (x̄ - μ)/(s/√n)</td>
+            </tr>
+            <tr>
+                <td class="aspect-column">One Sample Formula</td>
+                <td class="formula">z = (x̄ - μ)/(σ/√n)</td>
+                <td class="formula">t = (x̄ - μ)/(s/√n)</td>
+            </tr>
+            <tr>
+                <td class="aspect-column">Two Sample Formula</td>
+                <td class="formula">z = (x̄₁ - x̄₂)/√(σ₁²/n₁ + σ₂²/n₂)</td>
+                <td class="formula">t = (x̄₁ - x̄₂)/√(s₁²/n₁ + s₂²/n₂)</td>
+            </tr>
+            <tr>
+                <td class="aspect-column">Critical Values (α = 0.05)</td>
+                <td>
+                    • Two-tailed: ±1.96<br>
+                    • One-tailed: ±1.645
+                </td>
+                <td>
+                    Varies with df:<br>
+                    • df=1: ±12.706<br>
+                    • df=10: ±2.228<br>
+                    • df=30: ±2.042<br>
+                    • df=∞: ±1.96 (same as z)
+                </td>
+            </tr>
+            <tr>
+                <td class="aspect-column">Variable Examples</td>
+                <td>
+                    Independent (X):<br>
+                    • Teaching methods<br>
+                    • Drug treatments<br>
+                    • Age groups<br><br>
+                    Dependent (Y):<br>
+                    • Test scores<br>
+                    • Blood pressure<br>
+                    • Recovery time
+                </td>
+                <td>
+                    Independent (X):<br>
+                    • Study techniques<br>
+                    • Exercise programs<br>
+                    • Teaching styles<br><br>
+                    Dependent (Y):<br>
+                    • Learning outcomes<br>
+                    • Weight loss<br>
+                    • Student performance
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="note">
+        <strong>Note:</strong><br>
+        μ = population mean<br>
+        x̄ = sample mean<br>
+        σ = population standard deviation<br>
+        s = sample standard deviation<br>
+        n = sample size<br>
+        df = degrees of freedom<br>
+        X = Independent variable<br>
+        Y = Dependent variable
+    </div>
+</body>
+</html>

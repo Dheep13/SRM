@@ -1,0 +1,7 @@
+
+
+1- way annoa or 2-way annova -- choice 1
+
+T-test, f-Test and chi square test -- choice 1
+
+regression and correlation -- choice 1

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Comprehensive Statistical Tests Guide</title>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Headers */
+        h1, h2, h3, h4 {
+            color: #2c3e50;
+            margin-top: 1.5em;
+            page-break-after: avoid;
+        }
+
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid #2c3e50;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+            color: #2980b9;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            border: 1px solid #dee2e6;
+        }
+
+        .toc ul {
+            list-style-type: none;
+            padding-left: 20px;
+        }
+
+        .toc a {
+            color: #2980b9;
+            text-decoration: none;
+        }
+
+        /* Content Boxes */
+        .formula {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-left: 4px solid #3498db;
+            margin: 10px 0;
+            font-family: "Courier New", monospace;
+            page-break-inside: avoid;
+        }
+
+        .example {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 10px 0;
+            border: 1px solid #dee2e6;
+            page-break-inside: avoid;
+        }
+
+        .note {
+            background-color: #fff3e0;
+            padding: 15px;
+            border-left: 4px solid #ff9800;
+            margin: 10px 0;
+            page-break-inside: avoid;
+        }
+
+        /* Tables */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+
+        th, td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: #2c3e50;
+        }
+
+        /* Diagrams */
+        .diagram {
+            font-family: monospace;
+            white-space: pre;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            border: 1px solid #dee2e6;
+            border-radius: 5px;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        .decision-tree {
+            font-family: monospace;
+            white-space: pre;
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            page-break-inside: avoid;
+        }
+
+        /* Print Specific Styles */
+        @media print {
+            body {
+                margin: 20px;
+            }
+
+            .no-break {
+                page-break-inside: avoid;
+            }
+
+            h1 {
+                page-break-before: always;
+            }
+
+            .toc {
+                page-break-after: always;
+            }
+
+            @page {
+                margin: 2cm;
+            }
+        }
+
+        /* Navigation */
+        .nav-top {
+            text-align: right;
+            padding: 10px;
+            background: #f8f9fa;
+            position: sticky;
+            top: 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .nav-top a {
+            color: #2980b9;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        /* Additional Elements */
+        hr {
+            border: none;
+            border-top: 1px solid #dee2e6;
+            margin: 30px 0;
+        }
+
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: "Courier New", monospace;
+        }
+    </style>
+</head>
+<body>
+    <h1>Comprehensive Statistical Tests Guide</h1>
+
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#basics">1. Basic Concepts</a></li>
+            <li><a href="#ttest">2. T-Test Analysis</a></li>
+            <li><a href="#ftest">3. F-Test Analysis</a></li>
+            <li><a href="#comparison">4. Test Comparisons</a></li>
+            <li><a href="#decision">5. Decision Making</a></li>
+            <li><a href="#examples">6. Example Problems</a></li>
+            <li><a href="#reference">7. Quick Reference</a></li>
+        </ul>
+    </div>
+
+    <section id="basics" class="no-break">
+        <h2>1. Basic Concepts</h2>
+        
+        <h3>Hypothesis Testing</h3>
+        <div class="note">
+            <strong>Null Hypothesis (H₀)</strong>
+            <ul>
+                <li>States no significant difference exists</li>
+                <li>Contains "equal to" (=)</li>
+                <li>Default position to be tested</li>
+            </ul>
+            
+            <strong>Alternative Hypothesis (H₁)</strong>
+            <ul>
+                <li>States a difference exists</li>
+                <li>Opposite of H₀</li>
+                <li>What we're trying to prove</li>
+            </ul>
+        </div>
+
+        <div class="formula">
+            Common Hypothesis Forms:
+            H₀: μ₁ = μ₂ (two groups equal)
+            H₁: μ₁ ≠ μ₂ (two groups different)
+            
+            Or:
+            H₀: μ = μ₀ (sample equals population)
+            H₁: μ ≠ μ₀ (sample differs from population)
+        </div>
+    </section>
+
+    <section id="ttest" class="no-break">
+        <h2>2. T-Test Analysis</h2>
+
+        <h3>Purpose</h3>
+        <ul>
+            <li>Compares means of TWO groups</li>
+            <li>Shows direction of difference</li>
+            <li>Uses t-distribution</li>
+        </ul>
+
+        <h3>Formula</h3>
+        <div class="formula">
+            One Sample:
+            t = (x̄ - μ) / (s/√n)
+
+            Two Sample:
+            t = (x̄₁ - x̄₂) / √(s²₁/n₁ + s²₂/n₂)
+
+            Where:
+            x̄ = sample mean
+            μ = population mean
+            s = standard deviation
+            n = sample size
+        </div>
+
+        <h3>Rejection Regions</h3>
+        <div class="diagram">
+            Two-Tailed Test (α = 0.05)
+            
+            Reject H₀         Accept H₀         Reject H₀
+            ←───────|─────────────────|───────→
+                  -2.01              +2.01
+        </div>
+    </section>
+
+    <section id="ftest" class="no-break">
+        <h2>3. F-Test Analysis</h2>
+
+        <h3>Purpose</h3>
+        <ul>
+            <li>Compares variance between 2+ groups</li>
+            <li>Shows if differences exist (not direction)</li>
+            <li>Uses F-distribution</li>
+        </ul>
+
+        <h3>Formula</h3>
+        <div class="formula">
+            F = MSB / MSW
+
+            Where:
+            MSB = Mean Square Between groups
+            MSW = Mean Square Within groups
+        </div>
+
+        <h3>F-Distribution</h3>
+        <div class="diagram">
+            F-Test (α = 0.05)
+            
+            Accept H₀         |         Reject H₀
+            ←────────────────|─────────────────→
+                          F-critical
+        </div>
+    </section>
+
+    <section id="comparison" class="no-break">
+        <h2>4. Test Comparisons</h2>
+        
+        <table>
+            <tr>
+                <th>Aspect</th>
+                <th>T-Test</th>
+                <th>F-Test</th>
+            </tr>
+            <tr>
+                <td>Groups</td>
+                <td>Two only</td>
+                <td>Two or more</td>
+            </tr>
+            <tr>
+                <td>Direction</td>
+                <td>Shows direction</td>
+                <td>No direction</td>
+            </tr>
+            <tr>
+                <td>Distribution</td>
+                <td>t-distribution</td>
+                <td>F-distribution</td>
+            </tr>
+            <tr>
+                <td>Values</td>
+                <td>Positive/Negative</td>
+                <td>Only positive</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="decision" class="no-break">
+        <h2>5. Decision Making</h2>
+
+        <h3>T-Test Decision Tree</h3>
+        <div class="decision-tree">
+            Calculate t-value
+                  ↓
+            |t| > critical value?
+                ↙         ↘
+               Yes         No
+                ↓          ↓
+            Reject H₀    Accept H₀
+                ↓
+            Check direction
+        </div>
+
+        <h3>F-Test Decision Tree</h3>
+        <div class="decision-tree">
+            Calculate F-value
+                  ↓
+            F > F-critical?
+                ↙         ↘
+               Yes         No
+                ↓          ↓
+            Reject H₀    Accept H₀
+                ↓
+            Groups differ
+        </div>
+    </section>
+
+    <section id="examples" class="no-break">
+        <h2>6. Example Problems</h2>
+
+        <h3>T-Test Example</h3>
+        <div class="example">
+            Problem: Compare two painkillers
+            
+            Data:
+            Painkiller A: n=10, x̄=3.5, s=1.2
+            Painkiller B: n=10, x̄=5.8, s=1.4
+
+            t = (3.5 - 5.8) / √(1.2²/10 + 1.4²/10)
+            t = -3.945
+
+            |t| = 3.945 > 2.01 (critical value)
+            Decision: Reject H₀
+            Conclusion: Painkiller A more effective
+        </div>
+
+        <h3>F-Test Example</h3>
+        <div class="example">
+            Problem: Compare three teaching methods
+            
+            Data:
+            Method A: mean=85, SD=4, n=30
+            Method B: mean=78, SD=5, n=30
+            Method C: mean=82, SD=3, n=30
+
+            Calculate:
+            1. MSB = 245.3
+            2. MSW = 18.7
+            F = 245.3/18.7 = 13.12
+
+            F > F-critical (3.101)
+            Decision: Reject H₀
+            Conclusion: Methods differ significantly
+        </div>
+    </section>
+
+    <section id="reference" class="no-break">
+        <h2>7. Quick Reference</h2>
+
+        <h3>Critical Values</h3>
+        <table>
+            <tr>
+                <th>Test Type</th>
+                <th>α = 0.05</th>
+                <th>α = 0.01</th>
+            </tr>
+            <tr>
+                <td>Two-tailed t-test (df=30)</td>
+                <td>±2.042</td>
+                <td>±2.750</td>
+            </tr>
+            <tr>
+                <td>One-tailed t-test (df=30)</td>
+                <td>±1.697</td>
+                <td>±2.457</td>
+            </tr>
+            <tr>
+                <td>F-test (df1=2, df2=30)</td>
+                <td>3.32</td>
+                <td>5.39</td>
+            </tr>
+        </table>
+
+        <h3>Important Notes</h3>
+        <div class="note">
+            <ul>
+                <li>Always state H₀ and H₁ clearly</li>
+                <li>Check assumptions before testing</li>
+                <li>Consider practical significance</li>
+                <li>Use appropriate significance level</li>
+                <li>Report both statistical and practical conclusions</li>
+            </ul>
+        </div>
+    </section>
+</body>
+</html>

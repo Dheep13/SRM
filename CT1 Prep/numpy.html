@@ -1,0 +1,702 @@
+<table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+      <th>Function Name</th>
+      <th>Simple Input</th>
+      <th>Output</th>
+    </tr>
+    <tr>
+      <td>np.array()</td>
+      <td>[1, 2, 3]</td>
+      <td>array([1, 2, 3])</td>
+    </tr>
+    <tr>
+      <td>np.zeros()</td>
+      <td>(2, 2)</td>
+      <td>array([[0., 0.],
+         [0., 0.]])</td>
+    </tr>
+    <tr>
+      <td>np.ones()</td>
+      <td>(3,)</td>
+      <td>array([1., 1., 1.])</td>
+    </tr>
+    <tr>
+      <td>np.arange()</td>
+      <td>5</td>
+      <td>array([0, 1, 2, 3, 4])</td>
+    </tr>
+    <tr>
+      <td>np.linspace()</td>
+      <td>(0, 1, 5)</td>
+      <td>array([0., 0.25, 0.5, 0.75, 1.])</td>
+    </tr>
+    <tr>
+      <td>np.reshape()</td>
+      <td>np.arange(6), (2, 3)</td>
+      <td>array([[0, 1, 2],
+         [3, 4, 5]])</td>
+    </tr>
+    <tr>
+      <td>np.random.rand()</td>
+      <td>(2, 2)</td>
+      <td>array([[0.12345678, 0.23456789],
+         [0.34567891, 0.45678912]])</td>
+    </tr>
+    <tr>
+      <td>np.dot()</td>
+      <td>[1, 2], [3, 4]</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <td>np.mean()</td>
+      <td>[1, 2, 3, 4]</td>
+      <td>2.5</td>
+    </tr>
+    <tr>
+      <td>np.sum()</td>
+      <td>[[1, 2], [3, 4]]</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>np.stack()</td>
+      <td>[array([1, 2]), array([3, 4])]</td>
+      <td>array([[1, 2],
+         [3, 4]])</td>
+    </tr>
+    <tr>
+      <td>np.hstack()</td>
+      <td>(array([1, 2]), array([3, 4]))</td>
+      <td>array([1, 2, 3, 4])</td>
+    </tr>
+    <tr>
+      <td>np.vstack()</td>
+      <td>(array([1, 2]), array([3, 4]))</td>
+      <td>array([[1, 2],
+         [3, 4]])</td>
+    </tr>
+    <tr>
+      <td>np.split()</td>
+      <td>array([1, 2, 3, 4]), 2</td>
+      <td>[array([1, 2]), array([3, 4])]</td>
+    </tr>
+    <tr>
+      <td>np.nditer()</td>
+      <td>array([[1, 2], [3, 4]])</td>
+      <td>Iterator over (1, 2, 3, 4)</td>
+    </tr>
+    <tr>
+      <td>np.concatenate()</td>
+      <td>(array([1, 2]), array([3, 4]))</td>
+      <td>array([1, 2, 3, 4])</td>
+    </tr>
+    <tr>
+      <td>np.block()</td>
+      <td>[[array([[1, 2], [3, 4]]), array([[0, 0], [0, 0]])],
+   [array([[5, 6], [7, 8]]), array([[1, 1], [1, 1]])]]</td>
+      <td>array([[1, 2, 0, 0],
+         [3, 4, 0, 0],
+         [5, 6, 1, 1],
+         [7, 8, 1, 1]])</td>
+    </tr>
+  </table>
+  
+  <br><br>
+  
+  <table border="1" cellpadding="5" cellspacing="0">
+    <tr>
+      <th>Aspect</th>
+      <th>NumPy</th>
+      <th>Pandas</th>
+    </tr>
+    <tr>
+      <td>Primary Data Structure</td>
+      <td>ndarray (n-dimensional array)</td>
+      <td>DataFrame, Series</td>
+    </tr>
+    <tr>
+      <td>Data Types</td>
+      <td>Homogeneous (same type in an array)</td>
+      <td>Heterogeneous (different types in a DataFrame)</td>
+    </tr>
+    <tr>
+      <td>Main Use Case</td>
+      <td>Numerical operations, scientific computing</td>
+      <td>Data manipulation, analysis, cleaning</td>
+    </tr>
+    <tr>
+      <td>Dimensionality</td>
+      <td>Multi-dimensional arrays</td>
+      <td>Primarily 1D (Series) and 2D (DataFrame)</td>
+    </tr>
+    <tr>
+      <td>Indexing</td>
+      <td>Integer-based</td>
+      <td>Label-based and integer-based</td>
+    </tr>
+    <tr>
+      <td>Missing Data Handling</td>
+      <td>Limited (masked arrays)</td>
+      <td>Built-in support (NaN values)</td>
+    </tr>
+    <tr>
+      <td>Data Loading</td>
+      <td>Limited built-in options</td>
+      <td>Extensive support for various file formats</td>
+    </tr>
+    <tr>
+      <td>Memory Efficiency</td>
+      <td>Generally more efficient for numerical data</td>
+      <td>Less efficient due to additional functionalities</td>
+    </tr>
+    <tr>
+      <td>Time Series Support</td>
+      <td>Basic</td>
+      <td>Advanced</td>
+    </tr>
+    <tr>
+      <td>Data Alignment</td>
+      <td>No built-in alignment</td>
+      <td>Automatic alignment based on labels</td>
+    </tr>
+  </table>
+  
+  <br><br>
+  
+  <style>
+    .pandas-table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    .pandas-table th, .pandas-table td {
+        border: 1px solid black;
+        padding: 8px;
+        text-align: left;
+    }
+    .pandas-table th {
+        background-color: #f2f2f2;
+    }
+    .output {
+        font-family: monospace;
+        white-space: pre;
+        font-size: 0.8em;
+        background-color: #f8f8f8;
+        padding: 10px;
+        overflow-x: auto;
+    }
+</style>
+
+<table class="pandas-table">
+  <tr>
+    <th colspan="3">Common DataFrame for examples (Housing Dataset):</th>
+  </tr>
+  <tr>
+    <td colspan="3">
+      <pre class="output">
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({
+    'area': [1200, 1500, 1800, 1200, 2000, 1600, 1800, 2200, 1400, 1300],
+    'price': [200000, 250000, 300000, 180000, 350000, 280000, 320000, 400000, 240000, 220000],
+    'bedrooms': [2, 3, 3, 2, 4, 3, 4, 4, 2, 2],
+    'location': ['suburb', 'city', 'suburb', 'rural', 'city', 'suburb', 'city', 'city', 'rural', 'suburb'],
+    'age': [5, 10, 15, 8, 2, 12, 7, 3, 20, 18],
+    'has_garage': [True, True, False, False, True, True, True, True, False, True]
+})
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <th>Pandas Operation</th>
+    <th>Example</th>
+    <th>Output</th>
+  </tr>
+  <tr>
+    <td>df.head()</td>
+    <td>df.head(3)</td>
+    <td>
+      <pre class="output">
+   area   price  bedrooms location  age  has_garage
+0  1200  200000         2   suburb    5        True
+1  1500  250000         3     city   10        True
+2  1800  300000         3   suburb   15       False
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.tail()</td>
+    <td>df.tail(2)</td>
+    <td>
+      <pre class="output">
+   area   price  bedrooms location  age  has_garage
+8  1400  240000         2    rural   20       False
+9  1300  220000         2   suburb   18        True
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.info()</td>
+    <td>df.info()</td>
+    <td>
+      <pre class="output">
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 10 entries, 0 to 9
+Data columns (total 6 columns):
+ #   Column      Non-Null Count  Dtype  
+---  ------      --------------  -----  
+ 0   area        10 non-null     int64  
+ 1   price       10 non-null     int64  
+ 2   bedrooms    10 non-null     int64  
+ 3   location    10 non-null     object 
+ 4   age         10 non-null     int64  
+ 5   has_garage  10 non-null     bool   
+dtypes: bool(1), int64(4), object(1)
+memory usage: 570.0+ bytes
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.describe()</td>
+    <td>df.describe()</td>
+    <td>
+      <pre class="output">
+              area         price     bedrooms          age
+count    10.000000     10.000000   10.000000    10.000000
+mean   1600.000000  274000.000000    2.900000    10.000000
+std     332.665998   69101.955794    0.875595     6.146363
+min    1200.000000  180000.000000    2.000000     2.000000
+25%    1325.000000  225000.000000    2.000000     4.750000
+50%    1550.000000  265000.000000    3.000000     9.000000
+75%    1800.000000  315000.000000    4.000000    14.250000
+max    2200.000000  400000.000000    4.000000    20.000000
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df['column']</td>
+    <td>df['price']</td>
+    <td>
+      <pre class="output">
+0    200000
+1    250000
+2    300000
+3    180000
+4    350000
+5    280000
+6    320000
+7    400000
+8    240000
+9    220000
+Name: price, dtype: int64
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.loc[]</td>
+    <td>df.loc[2, 'bedrooms']</td>
+    <td>
+      <pre class="output">
+3
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.iloc[]</td>
+    <td>df.iloc[1, 2]</td>
+    <td>
+      <pre class="output">
+3
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.drop()</td>
+    <td>df.drop('has_garage', axis=1).head(3)</td>
+    <td>
+      <pre class="output">
+   area   price  bedrooms location  age
+0  1200  200000         2   suburb    5
+1  1500  250000         3     city   10
+2  1800  300000         3   suburb   15
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.dropna()</td>
+    <td>df_with_na = df.copy()<br>df_with_na.loc[1, 'price'] = np.nan<br>df_with_na.dropna().head(3)</td>
+    <td>
+      <pre class="output">
+   area   price  bedrooms location  age  has_garage
+0  1200  200000         2   suburb    5        True
+2  1800  300000         3   suburb   15       False
+3  1200  180000         2    rural    8       False
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.fillna()</td>
+    <td>df_with_na = df.copy()<br>df_with_na.loc[1, 'price'] = np.nan<br>df_with_na.fillna(df_with_na['price'].mean()).head(3)</td>
+    <td>
+      <pre class="output">
+   area        price  bedrooms location  age  has_garage
+0  1200  200000.0000         2   suburb    5        True
+1  1500  274000.0000         3     city   10        True
+2  1800  300000.0000         3   suburb   15       False
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.sort_values()</td>
+    <td>df.sort_values('price', ascending=False).head(3)</td>
+    <td>
+      <pre class="output">
+   area   price  bedrooms location  age  has_garage
+7  2200  400000         4     city    3        True
+4  2000  350000         4     city    2        True
+6  1800  320000         4     city    7        True
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.groupby()</td>
+    <td>df.groupby('location')['price'].mean()</td>
+    <td>
+      <pre class="output">
+location
+city       330000.0
+rural      210000.0
+suburb     250000.0
+Name: price, dtype: float64
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>pd.merge()</td>
+    <td>df2 = pd.DataFrame({'area': [1200, 1500], 'tax_rate': [0.02, 0.025]})<br>pd.merge(df, df2, on='area', how='inner')</td>
+    <td>
+      <pre class="output">
+   area   price  bedrooms location  age  has_garage  tax_rate
+0  1200  200000         2   suburb    5        True     0.020
+1  1200  180000         2    rural    8       False     0.020
+2  1500  250000         3     city   10        True     0.025
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>pd.concat()</td>
+    <td>df2 = pd.DataFrame({'area': [2500], 'price': [450000], 'bedrooms': [5]})<br>pd.concat([df, df2], ignore_index=True).tail(3)</td>
+    <td>
+      <pre class="output">
+     area   price  bedrooms location   age  has_garage
+8   1400  240000         2    rural  20.0       False
+9   1300  220000         2   suburb  18.0        True
+10  2500  450000         5      NaN   NaN         NaN
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.pivot_table()</td>
+    <td>df.pivot_table(values='price', index='location', columns='bedrooms', aggfunc='mean')</td>
+    <td>
+      <pre class="output">
+bedrooms         2          3          4
+location                                
+city           NaN  250000.000  356666.67
+rural     210000.0         NaN        NaN
+suburb   210000.0  290000.000        NaN
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.apply()</td>
+    <td>df[['area', 'price']].apply(lambda x: x.max() - x.min())</td>
+    <td>
+      <pre class="output">
+area      1000
+price    220000
+dtype: int64
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>pd.read_csv()</td>
+    <td>df.to_csv('housing.csv', index=False)<br>pd.read_csv('housing.csv').head(3)</td>
+    <td>
+      <pre class="output">
+   area   price  bedrooms location  age  has_garage
+0  1200  200000         2   suburb    5        True
+1  1500  250000         3     city   10        True
+2  1800  300000         3   suburb   15       False
+      </pre>
+    </td>
+  </tr>
+  <tr>
+    <td>df.to_csv()</td>
+    <td>df.to_csv('housing_output.csv', index=False)</td>
+    <td>
+      <pre class="output">
+(Saves the DataFrame to a CSV file, no direct output)
+      </pre>
+    </td>
+  </tr>
+</table>
+
+
+
+<style>
+  .pandas-table {
+      border-collapse: collapse;
+      width: 100%;
+  }
+  .pandas-table th, .pandas-table td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+  }
+  .pandas-table th {
+      background-color: #f2f2f2;
+  }
+  .output {
+      font-family: monospace;
+      white-space: pre;
+      font-size: 0.8em;
+      background-color: #f8f8f8;
+      padding: 10px;
+      overflow-x: auto;
+  }
+</style>
+
+<table class="pandas-table">
+<tr>
+  <th colspan="3">Common NumPy Arithmetic Operations</th>
+</tr>
+<tr>
+  <th>Operation</th>
+  <th>Example</th>
+  <th>Output</th>
+</tr>
+<tr>
+  <td>Basic Addition</td>
+  <td>
+    <pre class="output">
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+a + b</pre>
+  </td>
+  <td>
+    <pre class="output">array([5, 7, 9])</pre>
+  </td>
+</tr>
+<tr>
+  <td>Matrix Multiplication</td>
+  <td>
+    <pre class="output">
+matrix1 = np.array([[1, 2], [3, 4]])
+matrix2 = np.array([[5, 6], [7, 8]])
+np.dot(matrix1, matrix2)</pre>
+  </td>
+  <td>
+    <pre class="output">array([[19, 22],
+    [43, 50]])</pre>
+  </td>
+</tr>
+<tr>
+  <td>Element-wise Multiplication</td>
+  <td>
+    <pre class="output">
+a = np.array([1, 2, 3])
+b = np.array([4, 5, 6])
+a * b</pre>
+  </td>
+  <td>
+    <pre class="output">array([ 4, 10, 18])</pre>
+  </td>
+</tr>
+<tr>
+  <td>Division</td>
+  <td>
+    <pre class="output">
+a = np.array([4, 6, 8])
+b = np.array([2, 3, 4])
+a / b</pre>
+  </td>
+  <td>
+    <pre class="output">array([2., 2., 2.])</pre>
+  </td>
+</tr>
+<tr>
+  <td>Power Operation</td>
+  <td>
+    <pre class="output">
+a = np.array([1, 2, 3])
+np.power(a, 2)</pre>
+  </td>
+  <td>
+    <pre class="output">array([1, 4, 9])</pre>
+  </td>
+</tr>
+</table>
+
+<br>
+
+<table class="pandas-table">
+<tr>
+  <th colspan="3">Common Pandas Series Arithmetic Operations</th>
+</tr>
+<tr>
+  <th>Operation</th>
+  <th>Example</th>
+  <th>Output</th>
+</tr>
+<tr>
+  <td>Series Addition</td>
+  <td>
+    <pre class="output">
+s1 = pd.Series([1, 2, 3], index=['a', 'b', 'c'])
+s2 = pd.Series([4, 5, 6], index=['a', 'b', 'c'])
+s1 + s2</pre>
+  </td>
+  <td>
+    <pre class="output">
+a    5
+b    7
+c    9
+dtype: int64</pre>
+  </td>
+</tr>
+<tr>
+  <td>Series Multiplication</td>
+  <td>
+    <pre class="output">
+s1 = pd.Series([1, 2, 3], index=['a', 'b', 'c'])
+s2 = pd.Series([4, 5, 6], index=['a', 'b', 'c'])
+s1 * s2</pre>
+  </td>
+  <td>
+    <pre class="output">
+a     4
+b    10
+c    18
+dtype: int64</pre>
+  </td>
+</tr>
+<tr>
+  <td>Scalar Operation</td>
+  <td>
+    <pre class="output">
+s1 = pd.Series([1, 2, 3], index=['a', 'b', 'c'])
+s1 * 2</pre>
+  </td>
+  <td>
+    <pre class="output">
+a    2
+b    4
+c    6
+dtype: int64</pre>
+  </td>
+</tr>
+<tr>
+  <td>Statistical Operations</td>
+  <td>
+    <pre class="output">
+s1 = pd.Series([1, 2, 3, 4, 5])
+print("Mean:", s1.mean())
+print("Sum:", s1.sum())</pre>
+  </td>
+  <td>
+    <pre class="output">
+Mean: 3.0
+Sum: 15</pre>
+  </td>
+</tr>
+</table>
+
+<br>
+
+<table class="pandas-table">
+<tr>
+  <th colspan="3">Common Pandas DataFrame Arithmetic Operations</th>
+</tr>
+<tr>
+  <th>Operation</th>
+  <th>Example</th>
+  <th>Output</th>
+</tr>
+<tr>
+  <td>DataFrame Addition</td>
+  <td>
+    <pre class="output">
+df1 = pd.DataFrame({'A': [1, 2], 'B': [3, 4]})
+df2 = pd.DataFrame({'A': [5, 6], 'B': [7, 8]})
+df1 + df2</pre>
+  </td>
+  <td>
+    <pre class="output">
+ A   B
+0  6  10
+1  8  12</pre>
+  </td>
+</tr>
+<tr>
+  <td>DataFrame Multiplication</td>
+  <td>
+    <pre class="output">
+df1 = pd.DataFrame({'A': [1, 2], 'B': [3, 4]})
+df2 = pd.DataFrame({'A': [5, 6], 'B': [7, 8]})
+df1 * df2</pre>
+  </td>
+  <td>
+    <pre class="output">
+ A   B
+0  5  21
+1  12 32</pre>
+  </td>
+</tr>
+<tr>
+  <td>Column-wise Operations</td>
+  <td>
+    <pre class="output">
+df = pd.DataFrame({'A': [1, 2, 3], 
+                'B': [4, 5, 6]})
+df['A'] + df['B']</pre>
+  </td>
+  <td>
+    <pre class="output">
+0    5
+1    7
+2    9
+dtype: int64</pre>
+  </td>
+</tr>
+<tr>
+  <td>Statistical Operations</td>
+  <td>
+    <pre class="output">
+df = pd.DataFrame({'A': [1, 2, 3], 
+                'B': [4, 5, 6]})
+df.mean()</pre>
+  </td>
+  <td>
+    <pre class="output">
+A    2.0
+B    5.0
+dtype: float64</pre>
+  </td>
+</tr>
+<tr>
+  <td>Rolling Calculations</td>
+  <td>
+    <pre class="output">
+df = pd.DataFrame({'A': [1, 2, 3, 4]})
+df.rolling(window=2).mean()</pre>
+  </td>
+  <td>
+    <pre class="output">
+        A
+0       NaN
+1       1.5
+2       2.5
+3       3.5</pre>
+  </td>
+</tr>
+</table>

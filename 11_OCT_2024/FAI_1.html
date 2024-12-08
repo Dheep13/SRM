@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Exam Questions by Topic</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        .question {
+            background-color: #f8f9fa;
+            border-left: 4px solid #007bff;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        .answer {
+            background-color: #f1f9f1;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .marks {
+            color: #dc3545;
+            font-weight: bold;
+        }
+        .important {
+            background-color: #ffe6e6;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Topics - Practice Questions</h1>
+
+    <h2>1. State Space Search</h2>
+
+    <div class="question">
+        <p class="marks">Question 1.1 (15 Marks)</p>
+        <p>Given three jugs with capacities of 12 liters, 8 liters, and 3 liters respectively, with the 12-liter jug full and others empty:</p>
+        <p>a) Formulate this as a state space search problem to get exactly 6 liters in the 12-liter jug. (5 marks)</p>
+        <p>b) Show the first three valid moves and resulting states. (5 marks)</p>
+        <p>c) What search strategy would be most efficient for this problem and why? (5 marks)</p>
+    </div>
+
+    <div class="answer">
+        <h3>Solution 1.1:</h3>
+        
+        <p><strong>a) Problem Formulation (5 marks)</strong></p>
+        <ul>
+            <li>State Space: (x,y,z) where:
+                <ul>
+                    <li>x = water in 12L jug</li>
+                    <li>y = water in 8L jug</li>
+                    <li>z = water in 3L jug</li>
+                </ul>
+            </li>
+            <li>Initial State: (12,0,0)</li>
+            <li>Goal State: (6,*,*) where * can be any valid value</li>
+            <li>Operators: Pour from any jug to another</li>
+        </ul>
+
+        <p><strong>b) First Three Valid Moves (5 marks)</strong></p>
+        <pre>
+Initial: (12,0,0)
+Move 1: Pour 12L→8L = (4,8,0)
+Move 2: Pour 8L→3L = (4,5,3)
+Move 3: Pour 3L→12L = (7,5,0)
+        </pre>
+
+        <p><strong>c) Search Strategy (5 marks)</strong></p>
+        <ul>
+            <li>BFS (Breadth-First Search) would be most efficient because:
+                <ul>
+                    <li>State space is finite and not very deep</li>
+                    <li>Need to find shortest solution path</li>
+                    <li>All moves have equal cost</li>
+                    <li>Guarantees optimal solution</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="question">
+        <p class="marks">Question 1.2 (15 Marks)</p>
+        <p>Consider the 8-puzzle problem with the following configuration:</p>
+        <pre>
+Initial State:     Goal State:
+2 8 3             1 2 3
+1 6 4             8   4
+7   5             7 6 5
+        </pre>
+        <p>a) Define the heuristic function for this problem. (5 marks)</p>
+        <p>b) Calculate the Manhattan distance for the initial state. (5 marks)</p>
+        <p>c) Show the first two moves towards the solution using A* search. (5 marks)</p>
+    </div>
+
+    <div class="answer">
+        <h3>Solution 1.2:</h3>
+        
+        <p><strong>a) Heuristic Function (5 marks)</strong></p>
+        <ul>
+            <li>Manhattan distance: Sum of horizontal and vertical distances each tile is from its goal position</li>
+            <li>h(n) = Σ |x₁ - x₂| + |y₁ - y₂| for each tile</li>
+            <li>Admissible because it never overestimates the actual cost</li>
+        </ul>
+
+        <p><strong>b) Manhattan Distance Calculation (5 marks)</strong></p>
+        <pre>
+Tile 2: |0-0| + |1-1| = 0
+Tile 8: |0-1| + |1-0| = 2
+Tile 3: |0-2| + |0-2| = 0
+Tile 1: |1-0| + |0-0| = 2
+Tile 6: |1-1| + |2-1| = 1
+Tile 4: |1-2| + |1-2| = 0
+Tile 7: |2-0| + |2-0| = 0
+Tile 5: |2-2| + |2-2| = 0
+
+Total Manhattan distance = 5
+        </pre>
+
+        <p><strong>c) First Two A* Moves (5 marks)</strong></p>
+        <ul>
+            <li>Move 1: Slide 6 up
+                <ul>
+                    <li>f(n) = g(n) + h(n) = 1 + 4 = 5</li>
+                </ul>
+            </li>
+            <li>Move 2: Slide 8 down
+                <ul>
+                    <li>f(n) = g(n) + h(n) = 2 + 3 = 5</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <h2>2. Production System</h2>
+
+    <div class="question">
+        <p class="marks">Question 2.1 (15 Marks)</p>
+        <p>Design a production system for a weather advisory system with the following rules:</p>
+        <ul>
+            <li>If temperature > 35°C and humidity > 70%, issue heat warning</li>
+            <li>If wind speed > 50 km/h and precipitation > 10mm, issue storm warning</li>
+            <li>If visibility < 100m and temperature < 0°C, issue winter storm warning</li>
+        </ul>
+        <p>a) Write the production rules in formal IF-THEN format. (5 marks)</p>
+        <p>b) Create a conflict resolution strategy. (5 marks)</p>
+        <p>c) Show how the system would handle multiple simultaneous conditions. (5 marks)</p>
+    </div>
+
+    <div class="answer">
+        <h3>Solution 2.1:</h3>
+        
+        <p><strong>a) Production Rules (5 marks)</strong></p>
+        <pre>
+Rule 1:
+IF (temperature > 35) AND (humidity > 70)
+THEN warning = "Heat Warning"
+      priority = HIGH
+      action = "Issue public advisory"
+
+Rule 2:
+IF (wind_speed > 50) AND (precipitation > 10)
+THEN warning = "Storm Warning"
+      priority = CRITICAL
+      action = "Issue emergency alert"
+
+Rule 3:
+IF (visibility < 100) AND (temperature < 0)
+THEN warning = "Winter Storm Warning"
+      priority = HIGH
+      action = "Issue travel advisory"
+        </pre>
+
+        <p><strong>b) Conflict Resolution (5 marks)</strong></p>
+        <ul>
+            <li>Priority Ordering:
+                <ul>
+                    <li>CRITICAL: Immediate life threat</li>
+                    <li>HIGH: Potential danger</li>
+                    <li>MEDIUM: Caution needed</li>
+                    <li>LOW: Advisory only</li>
+                </ul>
+            </li>
+            <li>Specificity Principle: More specific conditions override general ones</li>
+            <li>Recency: Latest weather data takes precedence</li>
+        </ul>
+
+        <p><strong>c) Multiple Conditions Handling (5 marks)</strong></p>
+        <pre>
+Example Scenario:
+Temperature = 36°C
+Humidity = 75%
+Wind_speed = 55 km/h
+Precipitation = 12mm
+
+System Response:
+1. Rule 1 triggers (Heat Warning)
+2. Rule 2 triggers (Storm Warning)
+3. Conflict Resolution:
+   - Storm Warning takes precedence (CRITICAL)
+   - Heat Warning queued as secondary alert
+4. Combined Advisory Issued
+        </pre>
+    </div>
+
+    <div class="question">
+        <p class="marks">Question 2.2 (15 Marks)</p>
+        <p>Design a production system for a simple medical diagnosis system that can identify common cold, flu, and COVID-19 based on symptoms:</p>
+        <p>a) Create the knowledge base with at least 5 rules. (5 marks)</p>
+        <p>b) Draw the inference chain for a specific case. (5 marks)</p>
+        <p>c) Explain how certainty factors would be incorporated. (5 marks)</p>
+    </div>
+
+    <div class="answer">
+        <h3>Solution 2.2:</h3>
+        
+        <p><strong>a) Knowledge Base (5 marks)</strong></p>
+        <pre>
+Rule 1:
+IF (fever < 38°C) AND (runny_nose = true) AND (sneezing = true)
+THEN diagnosis = "Common Cold" (CF = 0.7)
+
+Rule 2:
+IF (fever >= 38°C) AND (body_aches = true) AND (fatigue = true)
+THEN diagnosis = "Flu" (CF = 0.8)
+
+Rule 3:
+IF (fever >= 38°C) AND (loss_of_taste = true) AND (dry_cough = true)
+THEN diagnosis = "COVID-19" (CF = 0.9)
+
+Rule 4:
+IF (contact_with_covid = true) AND (fever = true)
+THEN diagnosis = "COVID-19" (CF = 0.6)
+
+Rule 5:
+IF (seasonal_allergies = true) AND (runny_nose = true)
+THEN diagnosis = "Allergies" (CF = 0.5)
+        </pre>
+
+        <p><strong>b) Inference Chain Example (5 marks)</strong></p>
+        <pre>
+Patient Symptoms:
+- Fever 38.5°C
+- Loss of taste
+- Dry cough
+- Fatigue
+
+Inference Chain:
+1. Rule 2 triggers (Flu possibility)
+   CF = 0.8 * 0.7 = 0.56
+2. Rule 3 triggers (COVID-19 possibility)
+   CF = 0.9 * 0.9 = 0.81
+3. System concludes COVID-19 due to higher CF
+        </pre>
+
+        <p><strong>c) Certainty Factors Implementation (5 marks)</strong></p>
+        <ul>
+            <li>CF Calculation:
+                <ul>
+                    <li>Each symptom has individual CF</li>
+                    <li>Rule CF multiplied by symptom CFs</li>
+                    <li>Combined CF for multiple rules</li>
+                    <li>Threshold CF for diagnosis</li>
+                </ul>
+            </li>
+            <li>Formula: CF(combined) = CF1 + CF2(1 - CF1) for similar conclusions</li>
+            <li>Minimum CF threshold = 0.5 for valid diagnosis</li>
+        </ul>
+    </div>
+
+    <h2>3. Problem Characteristics</h2>
+
+    <div class="question">
+        <p class="marks">Question 3.1 (15 Marks)</p>
+        <p>For the N-Queens problem with N=4:</p>
+        <p>a) Define all problem characteristics. (5 marks)</p>
+        <p>b) Write a state validity checking function. (5 marks)</p>
+        <p>c) Analyze the complexity of the search space. (5 marks)</p>
+    </div>
+
+    <div class="answer">
+        <h3>Solution 3.1:</h3>
+        
+        <p><strong>a) Problem Characteristics (5 marks)</strong></p>
+        <ul>
+            <li>Initial State: Empty 4x4 board</li>
+            <li>Goal State: 4 queens placed with no conflicts</li>
+            <li>Constraints:
+                <ul>
+                    <li>No two queens on same row</li>
+                    <li>No two queens on same column</li>
+                    <li>No two queens on same diagonal</li>
+                </ul>
+            </li>
+            <li>State Space: All possible queen arrangements</li>
+            <li>Operators: Place queen on empty square</li>
+        </ul>
+
+        <p><strong>b) State Validity Function (5 marks)</strong></p>
+        <pre>
+function isValid(board):
+    n = 4
+    for i in range(n):
+        for j in range(i+1, n):
+            # Check row and column
+            if board[i][0] == board[j][0] or 
+               board[i][1] == board[j][1]:
+                return false
+            
+            # Check diagonals
+            if abs(board[i][0] - board[j][0]) ==
+               abs(board[i][1] - board[j][1]):
+                return false
+    return true
+        </pre>
+
+        <p><strong>c) Complexity Analysis (5 marks)</strong></p>
+        <ul>
+            <li>Total possible arrangements: 16C4 = 1820</li>
+            <li>Valid solutions: 2 (considering rotations and reflections)</li>
+            <li>Time complexity: O(n²) for validity checking</li>
+            <li>Space complexity: O(n) for board representation</li>
+        </ul>
+    </div>
+
+    <div class="question">
+        <p class="marks">Question 3.2 (15 Marks)</p>
+        <p>For the Traveling Salesman Problem with 4 cities:</p>
+        <p>a) Define the problem characteristics and constraints. (5 marks)</p>
+        <p>b) Create a heuristic function for the problem. (5 marks)</p>
+        <p>c) Analyze why this is an NP-hard problem. (5 marks)</p>
+    </div>
+
+    <div class="answer">
+        <h3>Solution 3.2:</h3>
+        
+        <p><strong>a) Problem Characteristics (5 marks)</strong></p>
+        <ul>
+            <li>State Space: All possible city permutations</li>
+            <li>Initial State: Starting city</li>
+            <li>Goal State: Complete tour returning to start</li>
+            <li>Constraints:
+                <ul>
+                    <li>Visit each city exactly once</li>
+                    <li>Return to starting city</li>
+                    <li>Minimize total distance</li>
+                </ul>
+            </li>
+        </ul>
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <style>
+                .answer {
+                    background-color: #f1f9f1;
+                    border-left: 4px solid #28a745;
+                    padding: 15px;
+                    margin: 15px 0;
+                }
+                pre {
+                    background-color: #f8f9fa;
+                    padding: 15px;
+                    border-radius: 5px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="answer">
+                <p><strong>b) Heuristic Function (5 marks)</strong></p>
+                <ul>
+                    <li>Minimum Spanning Tree (MST) Heuristic:
+                        <ul>
+                            <li>h(n) = cost of MST through unvisited cities + minimum edge to nearest unvisited city</li>
+                            <li>Example calculation for 4 cities:
+                                <pre>
+        Cities: A, B, C, D
+        Current Path: A → B
+        h(n) = MST(C,D) + min(dist(B,C), dist(B,D))
+                                </pre>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>Nearest Neighbor Heuristic:
+                        <ul>
+                            <li>h(n) = distance to closest unvisited city</li>
+                            <li>Less accurate but faster to compute</li>
+                        </ul>
+                    </li>
+                    <li>Properties:
+                        <ul>
+                            <li>Admissible: Never overestimates actual cost</li>
+                            <li>Consistent: Satisfies triangle inequality</li>
+                            <li>Computationally efficient for small n</li>
+                        </ul>
+                    </li>
+                </ul>
+        
+                <p><strong>c) NP-Hard Analysis (5 marks)</strong></p>
+                <ul>
+                    <li>Computational Complexity:
+                        <ul>
+                            <li>For n cities: (n-1)! possible tours</li>
+                            <li>4 cities = 6 possible tours (3!)</li>
+                            <li>5 cities = 24 possible tours (4!)</li>
+                            <li>Growth is factorial: O(n!)</li>
+                        </ul>
+                    </li>
+                    <li>Why it's NP-Hard:
+                        <ul>
+                            <li>No known polynomial-time algorithm exists</li>
+                            <li>All known exact solutions require exponential time</li>
+                            <li>Can't be reduced to simpler problem</li>
+                            <li>Verification is polynomial (P) but finding solution is NP</li>
+                        </ul>
+                    </li>
+                    <li>Example with 4 cities:
+                        <pre>
+        Cities: A, B, C, D
+        Possible Tours:
+        1. A → B → C → D → A
+        2. A → B → D → C → A
+        3. A → C → B → D → A
+        4. A → C → D → B → A
+        5. A → D → B → C → A
+        6. A → D → C → B → A
+        
+        Total combinations = 6
+        Checking each requires O(n) time
+        Total complexity = O(n × n!)
+                        </pre>
+                    </li>
+                    <li>Implications:
+                        <ul>
+                            <li>Must use approximation algorithms for large instances</li>
+                            <li>Exact solutions only feasible for small n</li>
+                            <li>Heuristic approaches necessary for practical applications</li>
+                        </ul>
+                    </li>
+                </ul>
+        
+                <div class="note">
+                    <p><strong>Important Note:</strong> For exam purposes, focus on:</p>
+                    <ul>
+                        <li>Being able to calculate complexity for small instances</li>
+                        <li>Understanding why the problem is NP-hard</li>
+                        <li>Knowing how to apply heuristics</li>
+                        <li>Explaining the exponential growth nature</li>
+                    </ul>
+                </div>
+            </div>
+        </body>
+        </html>

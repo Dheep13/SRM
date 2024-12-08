@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hypothesis Testing Summary</title>
+    <style>
+        @page {
+            margin: 1cm;
+            size: A4;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #2980b9;
+            margin-top: 20px;
+            border-bottom: 1px solid #bdc3c7;
+            padding-bottom: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            page-break-inside: avoid;
+        }
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .formula-box {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            page-break-inside: avoid;
+        }
+        .important-note {
+            background-color: #fff3f3;
+            border-left: 4px solid #e74c3c;
+            padding: 10px;
+            margin: 10px 0;
+            page-break-inside: avoid;
+        }
+        .section {
+            margin: 20px 0;
+            page-break-inside: avoid;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        li {
+            margin: 5px 0;
+        }
+        @media print {
+            .page-break {
+                page-break-before: always;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hypothesis Testing - Complete Summary</h1>
+
+    <div class="section">
+        <h2>1. Types of Hypothesis Tests</h2>
+        <table>
+            <tr>
+                <th>Test Type</th>
+                <th>Null Hypothesis (H₀)</th>
+                <th>Alternative (H₁)</th>
+                <th>Usage</th>
+            </tr>
+            <tr>
+                <td>Two-Tailed</td>
+                <td>μ = μ₀</td>
+                <td>μ ≠ μ₀</td>
+                <td>Testing for any difference</td>
+            </tr>
+            <tr>
+                <td>Left-Tailed</td>
+                <td>μ ≥ μ₀</td>
+                <td>μ < μ₀</td>
+                <td>Testing for decrease</td>
+            </tr>
+            <tr>
+                <td>Right-Tailed</td>
+                <td>μ ≤ μ₀</td>
+                <td>μ > μ₀</td>
+                <td>Testing for increase</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>2. Hypothesis Testing Process</h2>
+        <ol>
+            <li>State the null and alternative hypotheses</li>
+            <li>Choose significance level (α)</li>
+            <li>Calculate test statistic</li>
+            <li>Find p-value or critical value</li>
+            <li>Make decision and state conclusion</li>
+        </ol>
+    </div>
+
+    <div class="section">
+        <h2>3. Important Formulas</h2>
+        <div class="formula-box">
+            <h3>Z-Test Statistic:</h3>
+            Z = (x̄ - μ₀)/(σ/√n)
+            <br>
+            <small>Use when: Population standard deviation known</small>
+        </div>
+        <div class="formula-box">
+            <h3>T-Test Statistic:</h3>
+            t = (x̄ - μ₀)/(s/√n)
+            <br>
+            <small>Use when: Population standard deviation unknown</small>
+        </div>
+        <div class="formula-box">
+            <h3>Standard Error:</h3>
+            SE = s/√n
+            <br>
+            <small>s = sample standard deviation, n = sample size</small>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <h2>4. Decision Making Criteria</h2>
+        <table>
+            <tr>
+                <th>Using p-value</th>
+                <th>Using Critical Value</th>
+            </tr>
+            <tr>
+                <td>
+                    If p < α: Reject H₀<br>
+                    If p ≥ α: Fail to reject H₀
+                </td>
+                <td>
+                    If |test statistic| > critical value: Reject H₀<br>
+                    If |test statistic| ≤ critical value: Fail to reject H₀
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>5. Common Test Statistics</h2>
+        <table>
+            <tr>
+                <th>Test</th>
+                <th>When to Use</th>
+                <th>Key Assumptions</th>
+            </tr>
+            <tr>
+                <td>Z-test</td>
+                <td>Known σ, large sample</td>
+                <td>Normal distribution or n>30</td>
+            </tr>
+            <tr>
+                <td>T-test</td>
+                <td>Unknown σ</td>
+                <td>Normal distribution</td>
+            </tr>
+            <tr>
+                <td>Paired t-test</td>
+                <td>Before/after measurements</td>
+                <td>Normal distribution of differences</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>6. Critical Values Table</h2>
+        <table>
+            <tr>
+                <th>Significance Level (α)</th>
+                <th>Z-value (Two-tailed)</th>
+                <th>Z-value (One-tailed)</th>
+            </tr>
+            <tr>
+                <td>0.10</td>
+                <td>±1.645</td>
+                <td>1.28</td>
+            </tr>
+            <tr>
+                <td>0.05</td>
+                <td>±1.96</td>
+                <td>1.645</td>
+            </tr>
+            <tr>
+                <td>0.01</td>
+                <td>±2.576</td>
+                <td>2.326</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="page-break"></div>
+
+    <div class="section">
+        <h2>7. Important Considerations</h2>
+        <div class="important-note">
+            <ul>
+                <li>Never "accept" the null hypothesis - only "fail to reject"</li>
+                <li>Statistical significance ≠ Practical significance</li>
+                <li>Sample size affects power of the test</li>
+                <li>Always check assumptions before testing</li>
+                <li>Consider effect size along with p-value</li>
+                <li>Larger sample sizes increase test precision</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>8. Common Mistakes to Avoid</h2>
+        <ul>
+            <li>Using one-tailed test without justification</li>
+            <li>Ignoring test assumptions</li>
+            <li>Confusing statistical and practical significance</li>
+            <li>Drawing causal conclusions from correlation</li>
+            <li>Ignoring the context of the problem</li>
+        </ul>
+    </div>
+</body>
+</html>

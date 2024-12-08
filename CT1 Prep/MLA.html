@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Fold Cross-Validation, Logistic Regression, and Performance Metrics - Summary</title>
+</head>
+<body>
+    <h1>K-Fold Cross-Validation, Logistic Regression, and Performance Metrics - Summary</h1>
+
+    <section>
+        <h2>1. K-Fold Cross-Validation</h2>
+        <p>K-Fold Cross-Validation is a method to evaluate model performance by dividing the dataset into <strong>K equally sized folds</strong>. Each fold is used as a test set once, while the remaining <code>K-1</code> folds are used for training. This technique helps prevent overfitting and provides a reliable estimate of model generalization.</p>
+        <h3>Key Formula:</h3>
+        <p><strong>Average Accuracy:</strong> The mean accuracy across all folds, given by:</p>
+        <p><code>Average Accuracy = (Accuracy of Fold 1 + Accuracy of Fold 2 + ... + Accuracy of Fold K) / K</code></p>
+    </section>
+
+    <section>
+        <h2>2. Logistic Regression</h2>
+        <p>Logistic Regression is a classification algorithm used to predict binary or multiclass outcomes. It calculates the probability that a data point belongs to a certain class using the <strong>logistic function</strong>.</p>
+        <h3>Key Formula:</h3>
+        <p><strong>Logistic Function:</strong></p>
+        <p><code>P(y=1|X) = 1 / (1 + e^-(β0 + β1X1 + β2X2 + ... + βnXn))</code></p>
+        <p>Where:</p>
+        <ul>
+            <li><code>P(y=1|X)</code>: Probability of class 1 given feature vector X</li>
+            <li><code>β0</code>, <code>β1</code>, ..., <code>βn</code>: Model parameters (coefficients)</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>3. Performance Metrics and Formulas</h2>
+        <p>In classification tasks, evaluating model performance requires specific metrics derived from the <strong>Confusion Matrix</strong>.</p>
+        <h3>Confusion Matrix:</h3>
+        <pre>
+                Predicted Positive | Predicted Negative
+Actual Positive       TP            |      FN
+Actual Negative       FP            |      TN
+        </pre>
+        <p>Where:</p>
+        <ul>
+            <li><strong>TP</strong> = True Positives</li>
+            <li><strong>FP</strong> = False Positives</li>
+            <li><strong>FN</strong> = False Negatives</li>
+            <li><strong>TN</strong> = True Negatives</li>
+        </ul>
+        <h3>Key Formulas:</h3>
+        <ul>
+            <li><strong>Accuracy</strong>: Proportion of correct predictions<br>
+                <code>Accuracy = (TP + TN) / (TP + TN + FP + FN)</code>
+            </li>
+            <li><strong>Precision</strong>: Proportion of predicted positives that are actually positive<br>
+                <code>Precision = TP / (TP + FP)</code>
+            </li>
+            <li><strong>Recall (Sensitivity)</strong>: Proportion of actual positives identified correctly<br>
+                <code>Recall = TP / (TP + FN)</code>
+            </li>
+            <li><strong>F1-Score</strong>: Harmonic mean of Precision and Recall<br>
+                <code>F1-Score = 2 * (Precision * Recall) / (Precision + Recall)</code>
+            </li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>4. Bias-Variance Tradeoff</h2>
+        <p>The <strong>bias-variance tradeoff</strong> is essential in machine learning, balancing model complexity and accuracy. Key concepts include:</p>
+        <ul>
+            <li><strong>Bias:</strong> Error due to overly simplistic model assumptions, which can cause underfitting.</li>
+            <li><strong>Variance:</strong> Error due to high sensitivity to training data fluctuations, which can lead to overfitting.</li>
+        </ul>
+        <h3>Example:</h3>
+        <p>For instance, a <strong>high-degree polynomial regression</strong> may fit the training data well (low bias, high variance) but generalize poorly on unseen data due to overfitting.</p>
+    </section>
+
+    <section>
+        <h2>5. Manual vs. Automated K-Fold Cross-Validation</h2>
+        <p>We explored two methods of implementing K-Fold Cross-Validation:</p>
+        <h3>A. Manual Implementation</h3>
+        <p>Manually iterating through each fold provides flexibility for customization. Here’s an example:</p>
+        <pre>
+from sklearn.model_selection import KFold
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+k = 5
+kf = KFold(n_splits=k, shuffle=True, random_state=42)
+accuracy_scores = []
+
+for fold, (train_index, val_index) in enumerate(kf.split(X), 1):
+    X_train, X_val = X[train_index], X[val_index]
+    y_train, y_val = y[train_index], y[val_index]
+    
+    model = LogisticRegression(max_iter=10000)
+    model.fit(X_train, y_train)
+    
+    y_pred = model.predict(X_val)
+    accuracy = accuracy_score(y_val, y_pred)
+    accuracy_scores.append(accuracy)
+    
+    print(f"Fold {fold} Accuracy: {accuracy:.4f}")
+
+average_accuracy = np.mean(accuracy_scores)
+print(f"\nAverage Accuracy: {average_accuracy:.4f}")
+        </pre>
+
+        <h3>B. Using <code>cross_val_score</code></h3>
+        <p>The <code>cross_val_score</code> function simplifies K-Fold Cross-Validation by automating the split, train, and test process:</p>
+        <pre>
+from sklearn.model_selection import cross_val_score
+from sklearn.linear_model import LogisticRegression
+import numpy as np
+
+accuracy_scores = cross_val_score(LogisticRegression(max_iter=10000), X, y, cv=5, scoring='accuracy')
+
+print("Accuracy for each fold:", accuracy_scores)
+print("Average Accuracy:", np.mean(accuracy_scores))
+        </pre>
+    </section>
+
+    <section>
+        <h2>6. Key Takeaways</h2>
+        <ul>
+            <li><strong>K-Fold Cross-Validation:</strong> Helps avoid overfitting by providing a reliable performance estimate through multiple data splits.</li>
+            <li><strong>Manual vs. Automated:</strong> Manual K-Fold Cross-Validation allows more customization, while <code>cross_val_score</code> is ideal for simpler evaluations.</li>
+            <li><strong>Performance Metrics:</strong> Accuracy, precision, recall, and F1-score each provide unique insights into model evaluation, especially useful in interpreting the confusion matrix.</li>
+            <li><strong>Bias-Variance Tradeoff:</strong> A key consideration when selecting models, balancing bias and variance to avoid underfitting or overfitting.</li>
+        </ul>
+    </section>
+</body>
+</html>
