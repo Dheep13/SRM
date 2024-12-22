@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Documentation Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="presentation">
+        <!-- Title Slide -->
+        <section class="slide" id="title">
+            <h1>Code Documentation Generator</h1>
+            <p class="subtitle">AI-Powered Documentation Tool</p>
+            <div class="icons">
+                <span class="icon">🔍</span>
+                <span class="icon">📝</span>
+            </div>
+        </section>
+
+        <!-- Architecture Slide -->
+        <section class="slide" id="architecture">
+            <h2>System Architecture</h2>
+            <div class="architecture-flow">
+                <div class="arch-item">Code Input</div>
+                <div class="arrow">→</div>
+                <div class="arch-item">OpenAI API</div>
+                <div class="arrow">→</div>
+                <div class="arch-item">Documentation</div>
+            </div>
+        </section>
+
+        <!-- Features Slide -->
+        <section class="slide" id="features">
+            <h2>Key Features</h2>
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <span class="feature-icon">🌐</span>
+                    <h3>Web Interface</h3>
+                    <p>Easy-to-use interactive web interface</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">🤖</span>
+                    <h3>AI-Powered</h3>
+                    <p>Powered by OpenAI's GPT model</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">⚡</span>
+                    <h3>Real-time</h3>
+                    <p>Instant documentation generation</p>
+                </div>
+                <div class="feature-box">
+                    <span class="feature-icon">📝</span>
+                    <h3>Markdown</h3>
+                    <p>Clean, formatted documentation</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo Slide -->
+        <section class="slide" id="demo">
+            <h2>Example Usage</h2>
+            <div class="demo-container">
+                <div class="code-box">
+                    <h3>Input Code</h3>
+                    <pre><code>
+def calculate_statistics(numbers):
+    mean = sum(numbers) / len(numbers)
+    return {'mean': mean}
+                    </code></pre>
+                </div>
+                <div class="output-box">
+                    <h3>Generated Documentation</h3>
+                    <ul>
+                        <li>Calculates basic statistics</li>
+                        <li>Returns mean value</li>
+                        <li>Accepts number list</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Links Slide -->
+        <section class="slide" id="links">
+            <h2>Project Links</h2>
+            <a href="https://github.com/Dheep13/SRM/tree/main/code-documentation-generator" class="github-link">
+                View on GitHub
+            </a>
+        </section>
+    </div>
+
+    <div class="navigation">
+        <button onclick="previousSlide()" class="nav-btn">Previous</button>
+        <button onclick="nextSlide()" class="nav-btn">Next</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.style.display = 'none');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].style.display = 'block';
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Initialize
+        showSlide(0);
+    </script>
+</body>
+</html>
