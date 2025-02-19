@@ -1,0 +1,199 @@
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    h1 {
+        color: #2c3e50;
+        text-align: center;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 10px;
+    }
+    h2 {
+        color: #2980b9;
+        margin-top: 30px;
+        border-left: 4px solid #3498db;
+        padding-left: 10px;
+    }
+    .formula {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        border-left: 4px solid #2ecc71;
+        margin: 10px 0;
+        font-family: monospace;
+    }
+    .concept {
+        background-color: #f8f9fa;
+        padding: 15px;
+        border-radius: 5px;
+        border-left: 4px solid #e74c3c;
+        margin: 10px 0;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 20px 0;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+    }
+    th {
+        background-color: #3498db;
+        color: white;
+    }
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<h1>Neural Networks and Optimization Concepts Summary</h1>
+
+<h2>1. Key Components</h2>
+<div class="concept">
+    <strong>Neural Network Basic Components:</strong>
+    <ul>
+        <li>Layers (Input, Hidden, Output)</li>
+        <li>Weights and Biases</li>
+        <li>Activation Functions</li>
+        <li>Loss Function</li>
+        <li>Optimizer</li>
+    </ul>
+</div>
+
+<h2>2. Activation Functions</h2>
+<div class="formula">
+    <strong>Sigmoid:</strong><br>
+    σ(x) = 1 / (1 + e^(-x))<br>
+    - Output range: [0,1]<br>
+    - Used for binary classification
+</div>
+
+<h2>3. Gradient Descent Types</h2>
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Data Usage</th>
+        <th>Advantages</th>
+        <th>Disadvantages</th>
+    </tr>
+    <tr>
+        <td>Batch GD</td>
+        <td>Entire dataset</td>
+        <td>Stable convergence</td>
+        <td>High memory requirement</td>
+    </tr>
+    <tr>
+        <td>Stochastic GD</td>
+        <td>Single sample</td>
+        <td>Low memory, faster updates</td>
+        <td>Noisy updates</td>
+    </tr>
+    <tr>
+        <td>Mini-batch GD</td>
+        <td>Batch of samples</td>
+        <td>Balance of stability and speed</td>
+        <td>Requires batch size tuning</td>
+    </tr>
+</table>
+
+<h2>4. Optimization Algorithms</h2>
+
+<h3>4.1 Momentum</h3>
+<div class="formula">
+    velocity = β * velocity + learning_rate * gradient<br>
+    parameters = parameters - velocity<br>
+    <br>
+    Where:<br>
+    β = momentum coefficient (typically 0.9)<br>
+    velocity = accumulated gradient
+</div>
+
+<h3>4.2 RMSprop</h3>
+<div class="formula">
+    cache = decay_rate * cache + (1 - decay_rate) * gradient²<br>
+    parameters = parameters - learning_rate * gradient / sqrt(cache + ε)<br>
+    <br>
+    Where:<br>
+    decay_rate = typically 0.9<br>
+    ε = small number for numerical stability
+</div>
+
+<h3>4.3 Adam (Combines Momentum and RMSprop)</h3>
+<div class="formula">
+    m = β1 * m + (1 - β1) * gradient           # Momentum<br>
+    v = β2 * v + (1 - β2) * gradient²          # Velocity<br>
+    m_hat = m / (1 - β1^t)                     # Bias correction<br>
+    v_hat = v / (1 - β2^t)                     # Bias correction<br>
+    parameters = parameters - learning_rate * m_hat / (sqrt(v_hat) + ε)
+</div>
+
+<h2>5. Common Problems and Solutions</h2>
+
+<h3>5.1 Vanishing Gradients</h3>
+<div class="concept">
+    <strong>Problem:</strong> Gradients become too small in deep networks<br>
+    <strong>Solutions:</strong>
+    <ul>
+        <li>ReLU activation function</li>
+        <li>Skip connections (ResNet)</li>
+        <li>Proper weight initialization</li>
+    </ul>
+</div>
+
+<h3>5.2 Exploding Gradients</h3>
+<div class="concept">
+    <strong>Problem:</strong> Gradients become too large<br>
+    <strong>Solutions:</strong>
+    <ul>
+        <li>Gradient clipping</li>
+        <li>Layer normalization</li>
+        <li>Proper weight initialization</li>
+    </ul>
+</div>
+
+<h2>6. Important Concepts</h2>
+<div class="concept">
+    <strong>Epoch:</strong> One complete pass through the entire training dataset<br>
+    <strong>Batch Size:</strong> Number of training examples used in one iteration<br>
+    <strong>Learning Rate:</strong> Step size for parameter updates<br>
+    <strong>Loss Function:</strong> Measures the difference between predicted and actual values
+</div>
+
+<h2>7. Common Code Implementation</h2>
+<div class="formula">
+```python
+# Sequential Model (Keras)
+model = Sequential([
+    Dense(64, activation='relu', input_shape=(input_size,)),
+    Dense(32, activation='relu'),
+    Dense(output_size, activation='sigmoid')
+])
+
+# Compile
+model.compile(
+    optimizer=Adam(learning_rate=0.001),
+    loss='binary_crossentropy',
+    metrics=['accuracy']
+)
+
+# Train
+model.fit(X_train, y_train, epochs=100, batch_size=32)
+```
+</div>
+
+<h2>8. Best Practices</h2>
+<div class="concept">
+    <ul>
+        <li>Always scale/normalize input data</li>
+        <li>Use appropriate batch size (16-256)</li>
+        <li>Monitor training and validation metrics</li>
+        <li>Use early stopping to prevent overfitting</li>
+        <li>Start with simple architectures and gradually increase complexity</li>
+    </ul>
+</div>

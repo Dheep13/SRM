@@ -1,0 +1,131 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Processing Cases</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .controls {
+            margin: 20px 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .image-box {
+            flex: 1;
+            margin: 10px;
+            text-align: center;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+        }
+        select, button {
+            padding: 8px;
+            margin: 5px;
+        }
+        .case-description {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Processing Cases</h1>
+    
+    <div class="controls">
+        <form id="uploadForm">
+            <input type="file" id="imageInput" accept="image/*" required>
+            <select id="caseSelect">
+                <option value="case1">Case 1: Document Defect Detection</option>
+                <option value="case2">Case 2: Texture Analysis</option>
+                <option value="case3">Case 3: Edge Detection</option>
+                <option value="case4">Case 4: Frequency Analysis</option>
+            </select>
+            <button type="submit">Process Image</button>
+        </form>
+    </div>
+
+    <div class="case-description" id="caseDescription">
+        Select a case to see its description.
+    </div>
+
+    <div class="image-container">
+        <div class="image-box">
+            <h3>Original Image</h3>
+            <img id="originalImage" src="#" style="display: none;">
+        </div>
+        <div class="image-box">
+            <h3>Processed Image</h3>
+            <img id="processedImage" src="#" style="display: none;">
+        </div>
+    </div>
+
+    <script>
+        const descriptions = {
+            case1: "Document Defect Detection using 2D Fourier Transform - Enhances document defects through frequency domain processing.",
+            case2: "Texture Analysis using Gabor Filters - Analyzes surface textures and patterns.",
+            case3: "Advanced Edge Detection - Highlights boundaries and structural changes.",
+            case4: "Frequency Domain Analysis - Visualizes frequency components of the image."
+        };
+
+        document.getElementById('caseSelect').addEventListener('change', (e) => {
+            document.getElementById('caseDescription').textContent = descriptions[e.target.value];
+        });
+
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData();
+            const imageFile = document.getElementById('imageInput').files[0];
+            const selectedCase = document.getElementById('caseSelect').value;
+            
+            formData.append('image', imageFile);
+            formData.append('case', selectedCase);
+            
+            // Display original image
+            const originalImage = document.getElementById('originalImage');
+            originalImage.src = URL.createObjectURL(imageFile);
+            originalImage.style.display = 'block';
+            
+            try {
+                const response = await fetch('/process', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.error) {
+                    alert(data.error);
+                    return;
+                }
+                
+                // Display processed image
+                const processedImage = document.getElementById('processedImage');
+                processedImage.src = data.processed_image;
+                processedImage.style.display = 'block';
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while processing the image');
+            }
+        });
+
+        // Set initial description
+        document.getElementById('caseDescription').textContent = descriptions.case1;
+    </script>
+</body>
+</html>
